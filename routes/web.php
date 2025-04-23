@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,4 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// TODOS
+Route::resource('todos', TodoController::class)
+    ->only(['index', 'create', 'edit']);
+
+require __DIR__ . '/auth.php';
