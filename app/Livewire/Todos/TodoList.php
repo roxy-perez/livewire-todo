@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Todos;
 
+use App\Models\Todo;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Contracts\View\View;
@@ -14,7 +15,13 @@ class TodoList extends Component
 
     public function edit(int $id) {}
 
-    public function toggle(int $id) {}
+    public function toggle(int $id) {
+
+        /** @var Todo $todo */
+        $todo = auth()->user()->todos()->findorFail($id);
+        $todo->done = !$todo->done;
+        $todo->save();
+    }
 
     public function preDelete(int $id) {}
 
