@@ -27,7 +27,7 @@
         <p class="text-lg text-gray-700 dark:text-gray-200">No hay tareas</p>
     @endforelse
 
-    {{-- <livewire:todos.confirm-todo-deletion :show="!!$todoToDelete" /> --}}
+    {{-- <livewire:todos.confirm-todos-deletion :show="!!$todoToDelete" /> --}}
 
     {{ $todos->links() }}
 </div>

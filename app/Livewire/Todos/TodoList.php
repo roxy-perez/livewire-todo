@@ -13,9 +13,13 @@ class TodoList extends Component
 
     public ?int $todoToDelete = null;
 
-    public function edit(int $id) {}
+    public function edit(int $id): void
+    {
+        $this->redirect(route('todos.edit', ['todo' => $id]));
+    }
 
-    public function toggle(int $id) {
+    public function toggle(int $id)
+    {
 
         /** @var Todo $todo */
         $todo = auth()->user()->todos()->findorFail($id);
