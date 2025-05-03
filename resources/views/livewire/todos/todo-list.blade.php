@@ -1,10 +1,11 @@
 <div>
     @forelse($todos as $todo)
-        <div class="flex justify-between items-center py-4 border-b border-gray-300  dark:border-gray-600">
+        <div class="flex justify-between items-center py-4 border-b border-gray-300 dark:border-gray-600">
             <div>
                 <h3 class="text-lg font-bold text-gray-700 dark:text-gray-200">{{ $todo->title }}</h3>
 
-                <p class="text-md text-gray-700 dark:text-gray-400 {{ $todo->done ? 'line-through text-lime-600 dark:text-red-400' : '' }}">
+                <p
+                    class="text-md text-gray-700 dark:text-gray-400 {{ $todo->done ? 'line-through text-lime-600 dark:text-red-400' : '' }}">
                     {{ $todo->description }}
                 </p>
             </div>
@@ -27,7 +28,8 @@
         <p class="text-lg text-gray-700 dark:text-gray-200">No hay tareas</p>
     @endforelse
 
-    {{-- <livewire:todos.confirm-todos-deletion :show="!!$todoToDelete" /> --}}
+
+    <livewire:todos.confirm-todo-deletion :show="!!$todoToDelete" />
 
     {{ $todos->links() }}
 </div>
