@@ -2,38 +2,36 @@
 
 namespace App\Livewire\Todos;
 
+use App\Livewire\Forms\Todos\TodoForm;
 use App\Models\Todo;
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
+use Livewire\Component;
 
 class UpdateTodo extends Component
 {
     public Todo $todo;
 
-    public string $title = '';
-    public string $description = '';
-    public bool $done = false;
+    public TodoForm $form;
 
     public function mount(Todo $todo): void
     {
         $this->todo = $todo;
-
-        $this->title = $todo->title;
-        $this->description = $todo->description;
-        $this->done = $todo->done;
+        $this->form->setTodo($todo);
     }
 
     public function save(): void
     {
-        $this->todo->update($this->only(['title', 'description', 'done']));
+        $this->form->update();
 
-        session()->flash('status', 'La tarea ha sido actualizada.');
+        session()->flash('status', 'La tarea ha sido actualizada');
 
         $this->redirect(route('todos.index'));
     }
 
     public function render(): View
     {
-        return view('livewire.todos.update-todo');
+        return view('livewire.todos.todo-form', [
+            'textButton' => __('Actualizar'),
+        ]);
     }
 }
